@@ -1,22 +1,22 @@
-import type { NextRequest } from 'next/server'
+import { NextResponse, type NextRequest } from 'next/server'
 import { getRequestContext } from '@cloudflare/next-on-pages'
 
 export const runtime = 'edge'
 
-export async function GET(request: NextRequest) {
-  let responseText = 'Hello World'
+export async function POST(request: NextRequest) {
+  return NextResponse.json({ data: [
+    { views: 28567838, title: "Links Views" },
+    { views: 23, title: "Transfer Views" },
+    { views: 7346, title: "Received Views" },
+    { views: 76, title: "Refers Views" },
+  ]})
 
-  // In the edge runtime you can use Bindings that are available in your application
-  // (for more details see:
-  //    - https://developers.cloudflare.com/pages/framework-guides/deploy-a-nextjs-site/#use-bindings-in-your-nextjs-application
-  //    - https://developers.cloudflare.com/pages/functions/bindings/
-  // )
-  //
-  // KV Example:
-  // const myKv = getRequestContext().env.MY_KV_NAMESPACE
-  // await myKv.put('suffix', ' from a KV store!')
-  // const suffix = await myKv.get('suffix')
-  // responseText += suffix
+  // return NextResponse.redirect("https://play.famobi.com/pie-realife-cooking", {
+  //   status: 302,
+  //   headers: {
+  //     'Location': 'https://play.famobi.com/pie-realife-cooking',
+  //   },
 
-  return new Response(responseText)
+  // })
+
 }
